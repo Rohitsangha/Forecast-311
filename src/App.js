@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import '@elastic/eui/dist/eui_theme_light.css';
 import styles from"./App.module.css";
-
 import { Header, Superselect, Modal} from './components';
 
 import {Map, TileLayer, Marker, Popup, Polygon, GeoJSON} from "react-leaflet";
@@ -19,7 +19,11 @@ import {
     EuiPageBody,
     EuiPageContent,
     EuiPageSideBar,
+    EuiSelect,
+    EuiSideNav,
+    EuiSideNavItem,
     EuiFieldSearch,
+    EuiSuperSelect,
     EuiButton,
     EuiForm,
     EuiCallOut,
@@ -35,6 +39,7 @@ const App = () => {
 
     //Api keys **move to env file
     const mapKey = '7YdX4yPR0NXL8R9yqDyX';
+    const geoKey = '47c493e6f47ef825d3817edf9f60f282a1042dbe';
 
     //Basemap information
     const tilesUrl = `https://api.maptiler.com/maps/positron/{z}/{x}/{y}@2x.png?key=${mapKey}`;
@@ -69,11 +74,11 @@ const App = () => {
     <Header />
 
         <EuiPage>
-
             <EuiPageSideBar>
             </EuiPageSideBar>
 
-            <EuiPageBody component="div">
+            <EuiPageBody 
+                component="div">
                 <EuiPageContent>
                     {/* Importing leaflet map and baselayer */}
                     <Map className={styles.leaflet} center={center} zoom={11} scrollWheelZoom={true} zoomSnap={0} maxZoom={100}>
@@ -84,7 +89,6 @@ const App = () => {
                 </EuiPageContent>
 
             </EuiPageBody>
-
         </EuiPage>
         <Modal state={isModalVisible} close={closeModal}/>
     </>

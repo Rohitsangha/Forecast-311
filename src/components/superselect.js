@@ -6,7 +6,7 @@ const Superselect = ({value,setValue, choose}) => {
 
     //Options for superselect
     let options =[];
-    if (choose == 1) {
+    if (choose === 1) {
     options =  [
         {
         value: 'walk',

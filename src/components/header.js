@@ -14,12 +14,13 @@ const Header = () => {
     return (
         <EuiHeader>
           <EuiHeaderSectionItem border="right">
-            <EuiHeaderLogo  iconType="logoMaps">Calgary Data</EuiHeaderLogo>
+            <EuiHeaderLogo  iconType="logoMaps">311 Optimizer</EuiHeaderLogo>
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
-            <EuiHeaderLink href="https://github.com/Rohitsangha/ArtNearMe" style={{fontSize:'1.2rem'}}>
-              <i className="fab fa-github-alt"></i> GitHub
-              </EuiHeaderLink>
+            <EuiHeaderLink href="https://github.com/Rohitsangha/CalgaryHacks" style={{fontSize:'18px'}}>
+              <i className="fab fa-github-alt"></i>
+              GitHub
+            </EuiHeaderLink>
           </EuiHeaderSectionItem>
         </EuiHeader>
     )
