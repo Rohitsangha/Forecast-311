@@ -11,7 +11,7 @@ import { Icon } from 'leaflet';
 
 import axios from 'axios';
 
-import {getWards} from './services/apicalls.js'
+import {getWards, getWards2} from './services/apicalls.js'
 
 
 import {
@@ -45,13 +45,23 @@ const App = () => {
     const showModal = () => setIsModalVisible(true);
 
     //fix this
-    const a = getWards();
-    console.log('this is a', a);
+    var wards = {data: []};
+    getWards(wards);
+    console.log(wards);
 
     let wardStyle = {
         fillColor: 'blue',
         fillOpacity: '0.8',
     }
+
+
+    var myLines = [{
+        "type": "LineString",
+        "coordinates": [[-100, 40], [-105, 45], [-110, 55]]
+    }, {
+        "type": "LineString",
+        "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
+    }];
 
     return (
     <>
@@ -69,7 +79,7 @@ const App = () => {
                     <Map className={styles.leaflet} center={center} zoom={11} scrollWheelZoom={true} zoomSnap={0} maxZoom={100}>
                         <TileLayer url={tilesUrl} tileSize={512} crossOrigin="true" minZoom={6} zoomOffset={-1}/>
                         <Marker position={[51.0,-114]} onclick={showModal}></Marker>
-                        {/* <GeoJSON style={wardStyle} data={wards.features} /> */}
+                        <GeoJSON data={geojsonFeature} />
                     </Map>
                 </EuiPageContent>
 
