@@ -89,8 +89,8 @@ const App = () => {
                         color={defa}
                         positions={data.geometry.coordinates[0].map(reverse)} 
                         onclick={showModal}  
-                        onMouseOut={layer => {console.log(layer)}} 
-                        onMouseOver={layer => {console.log(layer)}} 
+                        onMouseOut={(e) => {e.target.setStyle({color:defa});}} 
+                        onMouseOver={(e) => {e.target.setStyle({color:highlight});}} 
                         opacity="1"
                         >   
                         </Polygon>))}
