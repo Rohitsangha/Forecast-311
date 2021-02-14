@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import '@elastic/eui/dist/eui_theme_light.css';
 import styles from"./App.module.css";
 import { Header, Superselect, Modal} from './components';
-
+import CaseCountGraph from './components/CaseCountGraphs.js';
 import {Map, TileLayer, Marker, Popup, Polygon, GeoJSON} from "react-leaflet";
 
 import { Icon } from 'leaflet';
@@ -107,13 +107,15 @@ const App = () => {
                         {features.map(data => (<Polygon positions={data.geometry.coordinates[0].map(reverse)} opacity="1" ></Polygon>))}
                         {/* <GeoJSON style={wardStyle} data={wards.features} /> */}
                     </Map>
+                
                 </EuiPageContent>
-
+                
             </EuiPageBody>
         </EuiPage>
-       
+        <CaseCountGraph/>
+        
     </>
-
+    
     )
 
 }
