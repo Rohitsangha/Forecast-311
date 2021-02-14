@@ -34,7 +34,7 @@ const App = () => {
 
     //Basemap information
     const tilesUrl = `https://api.maptiler.com/maps/positron/{z}/{x}/{y}@2x.png?key=${mapKey}`;
-    let center = [51.0447,-114];
+    let center = [51.0447,-114.0719];
   
     //Modal Functions
     const closeModal = () => setIsModalVisible(false);
@@ -60,7 +60,7 @@ const App = () => {
                 <EuiPageContent>
                     {/* Importing leaflet map and baselayer */}
                     <Map className={styles.leaflet} center={center} zoom={11} scrollWheelZoom={false} zoomSnap={0}>
-                        <TileLayer url={tilesUrl} tileSize={512} crossOrigin="true" minZoom={6} zoomOffset={-1}/>
+                        <TileLayer url={tilesUrl} tileSize={512} crossOrigin="true" minZoom={8} zoomOffset={-1}/>
                         <Marker position={[51.0,-114]} onclick={showModal}></Marker>
 
                     </Map>
