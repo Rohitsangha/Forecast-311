@@ -1,27 +1,44 @@
 import React from 'react';
-import {XYPlot, ArcSeries, LineSeries, VerticalBarSeries,VerticalGridLines,HorizontalGridLines,XAxis,YAxis,ChartLabel} from 'react-vis';
+import {
+    XYPlot,
+    FlexibleWidthXYPlot,
+    ArcSeries,
+    BarSeries,
+    VerticalBarSeries, 
+    VerticalGridLines, 
+    HorizontalGridLines,
+    XAxis,
+    YAxis,
+    ChartLabel
+} from 'react-vis';
 import * as d3 from 'd3';
 import "./chart.css";
+
+d3.csv("count1.csv", function(d) {
+    console.log(d);
+    return {
+        agency_responsible : d.agency_responsible,
+        count: d.count
+        };
+    }).then(function(data) {
+    console.log(data[0]);
+});
+
 /* eslint-disable */
 const CaseCountGraphs = () => {
-    let myDat;
-    // Load count data
-    d3.csv('../../public/count.csv').then(function(data) {
-        myDat = data;
-    });
-
-    let counts;
-    const countData = [];
+    
 
     const myData = [
         {x: 'A', y: 10},
         {x: 'B', y: 5},
         {x: 'C', y: 15}
     ];
-    
-    
+
     return (
-        <XYPlot height={400} width={400}>
+        <FlexibleWidthXYPlot 
+            height={400}
+            xType = "ordinal"
+        >
         <XAxis/>
         <ChartLabel
         text="X Axis"
@@ -34,23 +51,21 @@ const CaseCountGraphs = () => {
         text="Y Axis"
         className="alt-y-label"
         includeMargin={false}
-        xPercent={0.06}
+        xPercent={0.02}
         yPercent={0.06}
         style={{
-        transform: 'rotate(-90)',
         textAnchor: 'end'
         }}
         />
         <YAxis/>
-        <LineSeries data={myData} />
-        <VerticalGridLines />
+        <VerticalBarSeries 
+            data={myData}
+            color='#000000'
+            opacity={1}
+        />
         <HorizontalGridLines />
-        </XYPlot>  
+        </FlexibleWidthXYPlot>  
     )
-    
-
-
-    
 }
 
 export default CaseCountGraphs

@@ -1,6 +1,12 @@
-import * as d3 from d3;
+// Run node {filename} to get JSON array of graphable data
 
-// Load count data
-d3.csv('../../public/count.csv').then(function(data) {
-    console.log(data[0]);
+const csv = require('csv-parser');
+const fs = require('fs');
+const results = [];
+
+fs.createReadStream('count.csv')
+    .pipe(csv())
+    .on('data', (data) => results.push(data))
+    .on('end', () => {
+    console.log(results.map((el) => ({x: el.agency_responsible, y: el.count})));
 });
