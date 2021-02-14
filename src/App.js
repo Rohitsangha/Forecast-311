@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 
 import '@elastic/eui/dist/eui_theme_light.css';
 import styles from"./App.module.css";
-
 import { Header, Superselect, Modal} from './components';
 
 import {Map, TileLayer, Marker, Popup, Polygon, GeoJSON} from "react-leaflet";
@@ -11,7 +10,7 @@ import { Icon } from 'leaflet';
 
 import axios from 'axios';
 
-import {getWards} from './services/apicalls.js'
+import {getWards, getWards2} from './services/apicalls.js'
 
 
 import {
@@ -19,7 +18,11 @@ import {
     EuiPageBody,
     EuiPageContent,
     EuiPageSideBar,
+    EuiSelect,
+    EuiSideNav,
+    EuiSideNavItem,
     EuiFieldSearch,
+    EuiSuperSelect,
     EuiButton,
     EuiForm,
     EuiCallOut,
@@ -59,6 +62,7 @@ const App = () => {
     
     //Api keys **move to env file
     const mapKey = '7YdX4yPR0NXL8R9yqDyX';
+    const geoKey = '47c493e6f47ef825d3817edf9f60f282a1042dbe';
 
     //Basemap information
     const tilesUrl = `https://api.maptiler.com/maps/positron/{z}/{x}/{y}@2x.png?key=${mapKey}`;
@@ -75,13 +79,21 @@ const App = () => {
     
     }
 
+
+    var myLines = [{
+        "type": "LineString",
+        "coordinates": [[-100, 40], [-105, 45], [-110, 55]]
+    }, {
+        "type": "LineString",
+        "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
+    }];
+
     return (
     <>
     {/* Using elastic page,sidebar and header modules */}
     <Header />
 
         <EuiPage>
-
             <EuiPageSideBar>
             </EuiPageSideBar>
 
@@ -98,7 +110,6 @@ const App = () => {
                 </EuiPageContent>
 
             </EuiPageBody>
-
         </EuiPage>
        
     </>
