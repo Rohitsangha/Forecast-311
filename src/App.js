@@ -24,7 +24,9 @@ import {
     EuiForm,
     EuiCallOut,
     EuiModal,
+    EuiQuickSelectPopover,
   } from '@elastic/eui';
+import { get } from 'http';
 
 const App = () => {
 
@@ -41,14 +43,15 @@ const App = () => {
     //Modal Functions
     const closeModal = () => setIsModalVisible(false);
     const showModal = () => setIsModalVisible(true);
-    let wards = [];
+
+    //fix this
+    const a = getWards();
+    console.log('this is a', a);
+
     let wardStyle = {
         fillColor: 'blue',
         fillOpacity: '0.8',
     }
-
-    //Get ward boundaries
-    getWards(wards);
 
     return (
     <>
@@ -66,7 +69,7 @@ const App = () => {
                     <Map className={styles.leaflet} center={center} zoom={11} scrollWheelZoom={true} zoomSnap={0} maxZoom={100}>
                         <TileLayer url={tilesUrl} tileSize={512} crossOrigin="true" minZoom={6} zoomOffset={-1}/>
                         <Marker position={[51.0,-114]} onclick={showModal}></Marker>
-                        <GeoJSON style={wardStyle} data={wards.features} />
+                        {/* <GeoJSON style={wardStyle} data={wards.features} /> */}
                     </Map>
                 </EuiPageContent>
 
