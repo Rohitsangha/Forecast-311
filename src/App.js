@@ -35,7 +35,7 @@ const App = () => {
 
     //Store States
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [features,setFeatures] = useState([]);
+    const [features, setFeatures] = useState([]);
 
     useEffect(() => {
           getWards()
@@ -43,12 +43,6 @@ const App = () => {
             setFeatures(features.payload)
           })
       }, [])
-
-
-    // getWards().then(data => {console.log(data.payload[0].geometry.coordinates[0].map(reverse))})
-
-
-
 
       const reverse = (data) => {
         for(let i = 0; i < data.length; i++) {
@@ -71,22 +65,9 @@ const App = () => {
     //Modal Functions
     const closeModal = () => setIsModalVisible(false);
     const showModal = () => setIsModalVisible(true);
+    const highlight = '#FFA500';
+    const defa = '#1e696b';
 
-
-    let wardStyle = {
-        fillColor: 'blue',
-        fillOpacity: '0.8',
-    
-    }
-
-
-    var myLines = [{
-        "type": "LineString",
-        "coordinates": [[-100, 40], [-105, 45], [-110, 55]]
-    }, {
-        "type": "LineString",
-        "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
-    }];
 
     return (
     <>
@@ -103,9 +84,16 @@ const App = () => {
                     {/* Importing leaflet map and baselayer */}
                     <Map className={styles.leaflet} center={center} zoom={11} scrollWheelZoom={true} zoomSnap={0} maxZoom={100}>
                         <TileLayer url={tilesUrl} tileSize={512} crossOrigin="true" minZoom={6} zoomOffset={-1}/>
-                        <Marker position={[51.0,-114]} onclick={showModal}></Marker>
-                        {features.map(data => (<Polygon positions={data.geometry.coordinates[0].map(reverse)} opacity="1" ></Polygon>))}
-                        {/* <GeoJSON style={wardStyle} data={wards.features} /> */}
+                        {features.map(data => (
+                        <Polygon 
+                        color={defa}
+                        positions={data.geometry.coordinates[0].map(reverse)} 
+                        onclick={showModal}  
+                        onMouseOut={layer => {console.log(layer)}} 
+                        onMouseOver={layer => {console.log(layer)}} 
+                        opacity="1"
+                        >   
+                        </Polygon>))}
                     </Map>
                 </EuiPageContent>
 

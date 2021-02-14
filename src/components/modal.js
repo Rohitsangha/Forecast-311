@@ -37,7 +37,6 @@ import {
         position: 'fixed',
         left: '40%',
         top: '15%',
-        
     }
     
 
