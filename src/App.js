@@ -39,6 +39,7 @@ const App = () => {
     //Modal Functions
     const closeModal = () => setIsModalVisible(false);
     const showModal = () => setIsModalVisible(true);
+
     
     return (
     <>
@@ -55,9 +56,9 @@ const App = () => {
             </EuiPageSideBar>
 
             <EuiPageBody component="div">
+                <Modal state={isModalVisible} close={closeModal}/>
                 <EuiPageContent>
                     {/* Importing leaflet map and baselayer */}
-
                     <Map className={styles.leaflet} center={center} zoom={11} scrollWheelZoom={false} zoomSnap={0}>
                         <TileLayer url={tilesUrl} tileSize={512} crossOrigin="true" minZoom={6} zoomOffset={-1}/>
                         <Marker position={[51.0,-114]} onclick={showModal}></Marker>
@@ -71,7 +72,7 @@ const App = () => {
             </EuiPageBody>
 
         </EuiPage>
-        <Modal state={isModalVisible} close={closeModal}/>
+       
     </>
 
     )
